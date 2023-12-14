@@ -2,11 +2,16 @@ import { PrismaClient } from "@prisma/client";
 import { MemoryLogger } from "./memory-logger";
 import { v4 as uuid } from "uuid";
 
+// Number of items to create in the database.
 const arbitraryNumber = 2_000_000;
+
 const memoryLogger = new MemoryLogger();
 
 async function main() {
-  const prisma = new PrismaClient();
+  const prisma = new PrismaClient({
+    // With this logging enabled, you can see the queries sent to the MongoDB database
+    log: ["query"],
+  });
 
   const testCount = await prisma.test.count();
   console.log(`There are ${testCount} items in the database.`);
