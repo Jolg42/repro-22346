@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id   Int    @id @map("_id")
+  name String
+}
+
+model Test {
+  objectId String @id @default(auto()) @map("_id") @db.ObjectId
+  id       String @unique
+  na       String
+  sa       String
+
+  ap  Float
+  co  String
+  eq  Float
+  oi  String
+  oq  Float
+  ot  String
+  pr  Float
+  ro  Boolean
+  si  String
+  ps  String
+  st  String
+  sp  Float?
+  cp  Boolean
+  sy  String
+  ti  Int
+  tf  String
+  ty  String
+  ac  Float?
+  pr2 Float?
+  ut  Int
+  wt  String
+  pp  Boolean
+
+  pi String?
+
+  ic Boolean   @default(false)
+  ca DateTime? @default(now())
+  ua DateTime? @updatedAt
+  da DateTime?
+
+  // @@index([ic])
+  @@map("test")
+}
